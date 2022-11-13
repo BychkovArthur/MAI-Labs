@@ -1,0 +1,652 @@
+0, ,<,sec_num_?_?
+sec_num_?_?,1, ,?_1
+sec_num_?_?,0, ,?_0
+?_1, ,<,on_sec_?_1
+on_sec_?_1,0,<,on_sec_?_1
+on_sec_?_1,1,<,on_sec_?_1
+on_sec_?_1, ,<,fst_num_?_1
+?_0, ,<,on_sec_?_0
+on_sec_?_0,0,<,on_sec_?_0
+on_sec_?_0,1,<,on_sec_?_0
+on_sec_?_0, ,<,fst_num_?_0
+// Первое считывание двух цифр
+fst_num_?_1,0, ,go_to_place01_fst_sp0
+go_to_place01_fst_sp0, ,>,go_to_place01_fst_sp1
+fst_num_?_1,1, ,go_to_place11_fst_sp0
+go_to_place11_fst_sp0, ,>,go_to_place11_fst_sp1
+fst_num_?_0,1, ,go_to_place10_fst_sp0
+go_to_place10_fst_sp0, ,>,go_to_place10_fst_sp1
+fst_num_?_0,0, ,go_to_place00_fst_sp0
+go_to_place00_fst_sp0, ,>,go_to_place00_fst_sp1
+// Постановка результата поразрядной дизъюнкции для 00
+go_to_place00_fst_sp1,1,>,go_to_place00_fst_sp1
+go_to_place00_fst_sp1,0,>,go_to_place00_fst_sp1
+go_to_place00_fst_sp1, ,>,go_to_place00_sec_sp0
+go_to_place00_sec_sp0,1,>,go_to_place00_sec_sp0
+go_to_place00_sec_sp0,0,>,go_to_place00_sec_sp0
+go_to_place00_sec_sp0, ,>,go_to_place00_sec_sp1
+go_to_place00_sec_sp1,1,>,go_to_place00_sec_sp1
+go_to_place00_sec_sp1,0,>,go_to_place00_sec_sp1
+go_to_place00_sec_sp1, ,>,placing00
+placing00, ,0,go_to_start00
+placing00,1,>,placing00
+placing00,0,>,placing00
+// Возвращение к началу для 00
+go_to_start00,1,<,go_to_start00
+go_to_start00,0,<,go_to_start00
+go_to_start00, ,=,start00
+// Постановка результата поразрядной дизъюнкции для 01
+go_to_place01_fst_sp1,1,>,go_to_place01_fst_sp1
+go_to_place01_fst_sp1,0,>,go_to_place01_fst_sp1
+go_to_place01_fst_sp1, ,>,go_to_place01_sec_sp0
+go_to_place01_sec_sp0,1,>,go_to_place01_sec_sp0
+go_to_place01_sec_sp0,0,>,go_to_place01_sec_sp0
+go_to_place01_sec_sp0, ,>,go_to_place01_sec_sp1
+go_to_place01_sec_sp1,1,>,go_to_place01_sec_sp1
+go_to_place01_sec_sp1,0,>,go_to_place01_sec_sp1
+go_to_place01_sec_sp1, ,>,placing01
+placing01, ,1,go_to_start01
+placing01,1,>,placing01
+placing01,0,>,placing01
+// Возвращение к началу для 01
+go_to_start01,1,<,go_to_start01
+go_to_start01,0,<,go_to_start01
+go_to_start01, ,=,start01
+// Постановка результата поразрядной дизъюнкции для 10
+go_to_place10_fst_sp1,1,>,go_to_place10_fst_sp1
+go_to_place10_fst_sp1,0,>,go_to_place10_fst_sp1
+go_to_place10_fst_sp1, ,>,go_to_place10_sec_sp0
+go_to_place10_sec_sp0,1,>,go_to_place10_sec_sp0
+go_to_place10_sec_sp0,0,>,go_to_place10_sec_sp0
+go_to_place10_sec_sp0, ,>,go_to_place10_sec_sp1
+go_to_place10_sec_sp1,1,>,go_to_place10_sec_sp1
+go_to_place10_sec_sp1,0,>,go_to_place10_sec_sp1
+go_to_place10_sec_sp1, ,>,placing10
+placing10, ,1,go_to_start10
+placing10,1,>,placing10
+placing10,0,>,placing10
+// Возвращение к началу для 10
+go_to_start10,1,<,go_to_start10
+go_to_start10,0,<,go_to_start10
+go_to_start10, ,=,start10
+// Постановка результата поразрядной дизъюнкции для 11
+go_to_place11_fst_sp1,1,>,go_to_place11_fst_sp1
+go_to_place11_fst_sp1,0,>,go_to_place11_fst_sp1
+go_to_place11_fst_sp1, ,>,go_to_place11_sec_sp0
+go_to_place11_sec_sp0,1,>,go_to_place11_sec_sp0
+go_to_place11_sec_sp0,0,>,go_to_place11_sec_sp0
+go_to_place11_sec_sp0, ,>,go_to_place11_sec_sp1
+go_to_place11_sec_sp1,1,>,go_to_place11_sec_sp1
+go_to_place11_sec_sp1,0,>,go_to_place11_sec_sp1
+go_to_place11_sec_sp1, ,>,placing11
+placing11, ,1,go_to_start11
+placing11,1,>,placing11
+placing11,0,>,placing11
+// Возвращение к началу для 11
+go_to_start11,1,<,go_to_start11
+go_to_start11,0,<,go_to_start11
+go_to_start11, ,=,start11
+// Последующее возвращение исходных значений + прочтение новых для 00
+start00, ,<,sec_placing_00_reading_**
+sec_placing_00_reading_**,1,<,sec_placing_00_reading_**
+sec_placing_00_reading_**,0,<,sec_placing_00_reading_**
+// Ставим 0 во втором числе
+sec_placing_00_reading_**, ,0,sec_placing_00_reading_**_sp1
+sec_placing_00_reading_**_sp1,0,<,sec_placing_00_reading_**_sp1_0
+sec_placing_00_reading_**_sp1,1,<,sec_placing_00_reading_**_sp1_0
+// Переход к первому числу
+sec_placing_00_reading_**_sp1_0,0, ,sec_placing_00_reading_*0_sp1
+sec_placing_00_reading_*0_sp1, ,<,sec_placing_00_reading_*0_sp1_1
+sec_placing_00_reading_*0_sp1_1,1,<,sec_placing_00_reading_*0_sp1_1
+sec_placing_00_reading_*0_sp1_1,0,<,sec_placing_00_reading_*0_sp1_1
+sec_placing_00_reading_*0_sp1_1, ,<,fst_placing_00_reading_*0_sp1
+sec_placing_00_reading_**_sp1_0,1, ,sec_placing_00_reading_*1_sp1
+sec_placing_00_reading_*1_sp1, ,<,sec_placing_00_reading_*1_sp1_1
+sec_placing_00_reading_*1_sp1_1,1,<,sec_placing_00_reading_*1_sp1_1
+sec_placing_00_reading_*1_sp1_1,0,<,sec_placing_00_reading_*1_sp1_1
+sec_placing_00_reading_*1_sp1_1, ,<,fst_placing_00_reading_*1_sp1
+// Обработка первого числа
+fst_placing_00_reading_*0_sp1,1,<,fst_placing_00_reading_*0_sp1
+fst_placing_00_reading_*0_sp1,0,<,fst_placing_00_reading_*0_sp1
+fst_placing_00_reading_*1_sp1,1,<,fst_placing_00_reading_*1_sp1
+fst_placing_00_reading_*1_sp1,0,<,fst_placing_00_reading_*1_sp1
+// Ставим 0 в первом числе
+fst_placing_00_reading_*0_sp1, ,0,fst_placing_00_reading_*0_sp1_1_0
+fst_placing_00_reading_*0_sp1_1_0,0,<,fst_placing_00_reading_*0_sp1_1
+fst_placing_00_reading_*0_sp1_1_0,1,<,fst_placing_00_reading_*0_sp1_1
+fst_placing_00_reading_*1_sp1, ,0,fst_placing_00_reading_*1_sp1_1_0
+fst_placing_00_reading_*1_sp1_1_0,0,<,fst_placing_00_reading_*1_sp1_1
+fst_placing_00_reading_*1_sp1_1_0,1,<,fst_placing_00_reading_*1_sp1_1
+// Считывание цифры из первого числа и вызов постановки ответа
+fst_placing_00_reading_*0_sp1_1,0, ,go_to_place00_fst_sp0
+fst_placing_00_reading_*0_sp1_1,1, ,go_to_place10_fst_sp0
+fst_placing_00_reading_*1_sp1_1,0, ,go_to_place01_fst_sp0
+fst_placing_00_reading_*1_sp1_1,1, ,go_to_place11_fst_sp0
+// Завершение второго числа
+sec_placing_00_reading_**_sp1_0, ,=,sec_placing_00_reading_*._sp1
+sec_placing_00_reading_*._sp1, ,=,sec_placing_00_reading_*._sp1_1
+sec_placing_00_reading_*._sp1_1,1,<,sec_placing_00_reading_*._sp1_1
+sec_placing_00_reading_*._sp1_1,0,<,sec_placing_00_reading_*._sp1_1
+sec_placing_00_reading_*._sp1_1, ,<,fst_placing_00_reading_*._sp1
+fst_placing_00_reading_*._sp1,1,<,fst_placing_00_reading_*._sp1
+fst_placing_00_reading_*._sp1,0,<,fst_placing_00_reading_*._sp1
+// Ставим 0 в первом числе
+fst_placing_00_reading_*._sp1, ,0,fst_placing_00_reading_*._sp1_1_0
+fst_placing_00_reading_*._sp1_1_0,0,<,fst_placing_00_reading_*._sp1_1
+fst_placing_00_reading_*._sp1_1_0,1,<,fst_placing_00_reading_*._sp1_1
+// Оба числа одинаковой длинны окончились
+fst_placing_00_reading_*._sp1_1, ,=,go_to_end
+// Последующее возвращение исходных значений + прочтение новых для 01
+start01, ,<,sec_placing_01_reading_**
+sec_placing_01_reading_**,1,<,sec_placing_01_reading_**
+sec_placing_01_reading_**,0,<,sec_placing_01_reading_**
+// Ставим 1 во втором числе
+sec_placing_01_reading_**, ,1,sec_placing_01_reading_**_sp1
+sec_placing_01_reading_**_sp1,0,<,sec_placing_01_reading_**_sp1_0
+sec_placing_01_reading_**_sp1,1,<,sec_placing_01_reading_**_sp1_0
+// Переход к первому числу
+sec_placing_01_reading_**_sp1_0,0, ,sec_placing_01_reading_*0_sp1
+sec_placing_01_reading_*0_sp1, ,<,sec_placing_01_reading_*0_sp1_1
+sec_placing_01_reading_*0_sp1_1,1,<,sec_placing_01_reading_*0_sp1_1
+sec_placing_01_reading_*0_sp1_1,0,<,sec_placing_01_reading_*0_sp1_1
+sec_placing_01_reading_*0_sp1_1, ,<,fst_placing_01_reading_*0_sp1
+sec_placing_01_reading_**_sp1_0,1, ,sec_placing_01_reading_*1_sp1
+sec_placing_01_reading_*1_sp1, ,<,sec_placing_01_reading_*1_sp1_1
+sec_placing_01_reading_*1_sp1_1,1,<,sec_placing_01_reading_*1_sp1_1
+sec_placing_01_reading_*1_sp1_1,0,<,sec_placing_01_reading_*1_sp1_1
+sec_placing_01_reading_*1_sp1_1, ,<,fst_placing_01_reading_*1_sp1
+// Обработка первого числа
+fst_placing_01_reading_*0_sp1,1,<,fst_placing_01_reading_*0_sp1
+fst_placing_01_reading_*0_sp1,0,<,fst_placing_01_reading_*0_sp1
+fst_placing_01_reading_*1_sp1,1,<,fst_placing_01_reading_*1_sp1
+fst_placing_01_reading_*1_sp1,0,<,fst_placing_01_reading_*1_sp1
+// Ставим 0 в первом числе
+fst_placing_01_reading_*0_sp1, ,0,fst_placing_01_reading_*0_sp1_1_0
+fst_placing_01_reading_*0_sp1_1_0,0,<,fst_placing_01_reading_*0_sp1_1
+fst_placing_01_reading_*0_sp1_1_0,1,<,fst_placing_01_reading_*0_sp1_1
+fst_placing_01_reading_*1_sp1, ,0,fst_placing_01_reading_*1_sp1_1_0
+fst_placing_01_reading_*1_sp1_1_0,0,<,fst_placing_01_reading_*1_sp1_1
+fst_placing_01_reading_*1_sp1_1_0,1,<,fst_placing_01_reading_*1_sp1_1
+// Считывание цифры из первого числа и вызов постановки ответа
+fst_placing_01_reading_*0_sp1_1,0, ,go_to_place00_fst_sp0
+fst_placing_01_reading_*0_sp1_1,1, ,go_to_place10_fst_sp0
+fst_placing_01_reading_*1_sp1_1,0, ,go_to_place01_fst_sp0
+fst_placing_01_reading_*1_sp1_1,1, ,go_to_place11_fst_sp0
+// Завершение второго числа
+sec_placing_01_reading_**_sp1_0, ,=,sec_placing_01_reading_*._sp1
+sec_placing_01_reading_*._sp1, ,=,sec_placing_01_reading_*._sp1_1
+sec_placing_01_reading_*._sp1_1,1,<,sec_placing_01_reading_*._sp1_1
+sec_placing_01_reading_*._sp1_1,0,<,sec_placing_01_reading_*._sp1_1
+sec_placing_01_reading_*._sp1_1, ,<,fst_placing_01_reading_*._sp1
+fst_placing_01_reading_*._sp1,1,<,fst_placing_01_reading_*._sp1
+fst_placing_01_reading_*._sp1,0,<,fst_placing_01_reading_*._sp1
+// Ставим 0 в первом числе
+fst_placing_01_reading_*._sp1, ,0,fst_placing_01_reading_*._sp1_1_0
+fst_placing_01_reading_*._sp1_1_0,0,<,fst_placing_01_reading_*._sp1_1
+fst_placing_01_reading_*._sp1_1_0,1,<,fst_placing_01_reading_*._sp1_1
+// Оба числа одинаковой длинны окончились
+fst_placing_01_reading_*._sp1_1, ,=,go_to_end
+// Последующее возвращение исходных значений + прочтение новых для 10
+start10, ,<,sec_placing_10_reading_**
+sec_placing_10_reading_**,1,<,sec_placing_10_reading_**
+sec_placing_10_reading_**,0,<,sec_placing_10_reading_**
+// Ставим 0 во втором числе
+sec_placing_10_reading_**, ,0,sec_placing_10_reading_**_sp1
+sec_placing_10_reading_**_sp1,0,<,sec_placing_10_reading_**_sp1_0
+sec_placing_10_reading_**_sp1,1,<,sec_placing_10_reading_**_sp1_0
+// Переход к первому числу
+sec_placing_10_reading_**_sp1_0,0, ,sec_placing_10_reading_*0_sp1
+sec_placing_10_reading_*0_sp1, ,<,sec_placing_10_reading_*0_sp1_1
+sec_placing_10_reading_*0_sp1_1,1,<,sec_placing_10_reading_*0_sp1_1
+sec_placing_10_reading_*0_sp1_1,0,<,sec_placing_10_reading_*0_sp1_1
+sec_placing_10_reading_*0_sp1_1, ,<,fst_placing_10_reading_*0_sp1
+sec_placing_10_reading_**_sp1_0,1, ,sec_placing_10_reading_*1_sp1
+sec_placing_10_reading_*1_sp1, ,<,sec_placing_10_reading_*1_sp1_1
+sec_placing_10_reading_*1_sp1_1,1,<,sec_placing_10_reading_*1_sp1_1
+sec_placing_10_reading_*1_sp1_1,0,<,sec_placing_10_reading_*1_sp1_1
+sec_placing_10_reading_*1_sp1_1, ,<,fst_placing_10_reading_*1_sp1
+// Обработка первого числа
+fst_placing_10_reading_*0_sp1,1,<,fst_placing_10_reading_*0_sp1
+fst_placing_10_reading_*0_sp1,0,<,fst_placing_10_reading_*0_sp1
+fst_placing_10_reading_*1_sp1,1,<,fst_placing_10_reading_*1_sp1
+fst_placing_10_reading_*1_sp1,0,<,fst_placing_10_reading_*1_sp1
+// Ставим 1 в первом числе
+fst_placing_10_reading_*0_sp1, ,1,fst_placing_10_reading_*0_sp1_1_0
+fst_placing_10_reading_*0_sp1_1_0,0,<,fst_placing_10_reading_*0_sp1_1
+fst_placing_10_reading_*0_sp1_1_0,1,<,fst_placing_10_reading_*0_sp1_1
+fst_placing_10_reading_*1_sp1, ,1,fst_placing_10_reading_*1_sp1_1_0
+fst_placing_10_reading_*1_sp1_1_0,0,<,fst_placing_10_reading_*1_sp1_1
+fst_placing_10_reading_*1_sp1_1_0,1,<,fst_placing_10_reading_*1_sp1_1
+// Считывание цифры из первого числа и вызов постановки ответа
+fst_placing_10_reading_*0_sp1_1,0, ,go_to_place00_fst_sp0
+fst_placing_10_reading_*0_sp1_1,1, ,go_to_place10_fst_sp0
+fst_placing_10_reading_*1_sp1_1,0, ,go_to_place01_fst_sp0
+fst_placing_10_reading_*1_sp1_1,1, ,go_to_place11_fst_sp0
+// Завершение второго числа
+sec_placing_10_reading_**_sp1_0, ,=,sec_placing_10_reading_*._sp1
+sec_placing_10_reading_*._sp1, ,=,sec_placing_10_reading_*._sp1_1
+sec_placing_10_reading_*._sp1_1,1,<,sec_placing_10_reading_*._sp1_1
+sec_placing_10_reading_*._sp1_1,0,<,sec_placing_10_reading_*._sp1_1
+sec_placing_10_reading_*._sp1_1, ,<,fst_placing_10_reading_*._sp1
+fst_placing_10_reading_*._sp1,1,<,fst_placing_10_reading_*._sp1
+fst_placing_10_reading_*._sp1,0,<,fst_placing_10_reading_*._sp1
+// Ставим 1 в первом числе
+fst_placing_10_reading_*._sp1, ,1,fst_placing_10_reading_*._sp1_1_0
+fst_placing_10_reading_*._sp1_1_0,0,<,fst_placing_10_reading_*._sp1_1
+fst_placing_10_reading_*._sp1_1_0,1,<,fst_placing_10_reading_*._sp1_1
+// Оба числа одинаковой длинны окончились
+fst_placing_10_reading_*._sp1_1, ,=,go_to_end
+// Последующее возвращение исходных значений + прочтение новых для 11
+start11, ,<,sec_placing_11_reading_**
+sec_placing_11_reading_**,1,<,sec_placing_11_reading_**
+sec_placing_11_reading_**,0,<,sec_placing_11_reading_**
+// Ставим 1 во втором числе
+sec_placing_11_reading_**, ,1,sec_placing_11_reading_**_sp1
+sec_placing_11_reading_**_sp1,0,<,sec_placing_11_reading_**_sp1_0
+sec_placing_11_reading_**_sp1,1,<,sec_placing_11_reading_**_sp1_0
+// Переход к первому числу
+sec_placing_11_reading_**_sp1_0,0, ,sec_placing_11_reading_*0_sp1
+sec_placing_11_reading_*0_sp1, ,<,sec_placing_11_reading_*0_sp1_1
+sec_placing_11_reading_*0_sp1_1,1,<,sec_placing_11_reading_*0_sp1_1
+sec_placing_11_reading_*0_sp1_1,0,<,sec_placing_11_reading_*0_sp1_1
+sec_placing_11_reading_*0_sp1_1, ,<,fst_placing_11_reading_*0_sp1
+sec_placing_11_reading_**_sp1_0,1, ,sec_placing_11_reading_*1_sp1
+sec_placing_11_reading_*1_sp1, ,<,sec_placing_11_reading_*1_sp1_1
+sec_placing_11_reading_*1_sp1_1,1,<,sec_placing_11_reading_*1_sp1_1
+sec_placing_11_reading_*1_sp1_1,0,<,sec_placing_11_reading_*1_sp1_1
+sec_placing_11_reading_*1_sp1_1, ,<,fst_placing_11_reading_*1_sp1
+// Обработка первого числа
+fst_placing_11_reading_*0_sp1,1,<,fst_placing_11_reading_*0_sp1
+fst_placing_11_reading_*0_sp1,0,<,fst_placing_11_reading_*0_sp1
+fst_placing_11_reading_*1_sp1,1,<,fst_placing_11_reading_*1_sp1
+fst_placing_11_reading_*1_sp1,0,<,fst_placing_11_reading_*1_sp1
+// Ставим 1 в первом числе
+fst_placing_11_reading_*0_sp1, ,1,fst_placing_11_reading_*0_sp1_1_0
+fst_placing_11_reading_*0_sp1_1_0,0,<,fst_placing_11_reading_*0_sp1_1
+fst_placing_11_reading_*0_sp1_1_0,1,<,fst_placing_11_reading_*0_sp1_1
+fst_placing_11_reading_*1_sp1, ,1,fst_placing_11_reading_*1_sp1_1_0
+fst_placing_11_reading_*1_sp1_1_0,0,<,fst_placing_11_reading_*1_sp1_1
+fst_placing_11_reading_*1_sp1_1_0,1,<,fst_placing_11_reading_*1_sp1_1
+// Считывание цифры из первого числа и вызов постановки ответа
+fst_placing_11_reading_*0_sp1_1,0, ,go_to_place00_fst_sp0
+fst_placing_11_reading_*0_sp1_1,1, ,go_to_place10_fst_sp0
+fst_placing_11_reading_*1_sp1_1,0, ,go_to_place01_fst_sp0
+fst_placing_11_reading_*1_sp1_1,1, ,go_to_place11_fst_sp0
+// Завершение второго числа
+sec_placing_11_reading_**_sp1_0, ,=,sec_placing_11_reading_*._sp1
+sec_placing_11_reading_*._sp1, ,=,sec_placing_11_reading_*._sp1_1
+sec_placing_11_reading_*._sp1_1,1,<,sec_placing_11_reading_*._sp1_1
+sec_placing_11_reading_*._sp1_1,0,<,sec_placing_11_reading_*._sp1_1
+sec_placing_11_reading_*._sp1_1, ,<,fst_placing_11_reading_*._sp1
+fst_placing_11_reading_*._sp1,1,<,fst_placing_11_reading_*._sp1
+fst_placing_11_reading_*._sp1,0,<,fst_placing_11_reading_*._sp1
+// Ставим 1 в первом числе
+fst_placing_11_reading_*._sp1, ,1,fst_placing_11_reading_*._sp1_1_0
+fst_placing_11_reading_*._sp1_1_0,0,<,fst_placing_11_reading_*._sp1_1
+fst_placing_11_reading_*._sp1_1_0,1,<,fst_placing_11_reading_*._sp1_1
+// Оба числа одинаковой длинны окончились
+fst_placing_11_reading_*._sp1_1, ,=,go_to_end
+// Первое число закончилось, а второе продолжается
+fst_placing_00_reading_*0_sp1_1, ,>,sec_0
+fst_placing_01_reading_*0_sp1_1, ,>,sec_0
+fst_placing_10_reading_*0_sp1_1, ,>,sec_0
+fst_placing_11_reading_*0_sp1_1, ,>,sec_0
+fst_placing_00_reading_*1_sp1_1, ,>,sec_1
+fst_placing_01_reading_*1_sp1_1, ,>,sec_1
+fst_placing_10_reading_*1_sp1_1, ,>,sec_1
+fst_placing_11_reading_*1_sp1_1, ,>,sec_1
+               // Ставим результат
+               sec_0,1,>,sec_0
+               sec_0,0,>,sec_0
+               sec_0, ,>,sec_0_sp1
+               sec_0_sp1,1,>,sec_0_sp1
+               sec_0_sp1,0,>,sec_0_sp1
+               sec_0_sp1, ,>,sec_0_sp2
+               sec_0_sp2,1,>,sec_0_sp2
+               sec_0_sp2,0,>,sec_0_sp2
+               sec_0_sp2, ,>,sec_0_sp3
+               sec_0_sp3,1,>,sec_0_sp3
+               sec_0_sp3,0,>,sec_0_sp3
+               sec_0_sp3, ,0,go_back_sec_0
+               sec_1,1,>,sec_1
+               sec_1,0,>,sec_1
+               sec_1, ,>,sec_1_sp1
+               sec_1_sp1,1,>,sec_1_sp1
+               sec_1_sp1,0,>,sec_1_sp1
+               sec_1_sp1, ,>,sec_1_sp2
+               sec_1_sp2,1,>,sec_1_sp2
+               sec_1_sp2,0,>,sec_1_sp2
+               sec_1_sp2, ,>,sec_1_sp3
+               sec_1_sp3,1,>,sec_1_sp3
+               sec_1_sp3,0,>,sec_1_sp3
+               sec_1_sp3, ,1,go_back_sec_1
+// Постановка и прочтение цифры из второго числа
+// Возвращение старого числа
+go_back_sec_0,1,<,go_back_sec_0
+go_back_sec_0,0,<,go_back_sec_0
+go_back_sec_0, ,<,go_back_sec_0_sp1
+go_back_sec_0_sp1,1,<,go_back_sec_0_sp1
+go_back_sec_0_sp1,0,<,go_back_sec_0_sp1
+go_back_sec_0_sp1, ,0,go_back_sec_placed_0
+go_back_sec_placed_0,1,<,go_back_sec_placed_0_read?
+go_back_sec_placed_0,0,<,go_back_sec_placed_0_read?
+go_back_sec_1,1,<,go_back_sec_1
+go_back_sec_1,0,<,go_back_sec_1
+go_back_sec_1, ,<,go_back_sec_1_sp1
+go_back_sec_1_sp1,1,<,go_back_sec_1_sp1
+go_back_sec_1_sp1,0,<,go_back_sec_1_sp1
+go_back_sec_1_sp1, ,1,go_back_sec_placed_1
+go_back_sec_placed_1,1,<,go_back_sec_placed_1_read?
+go_back_sec_placed_1,0,<,go_back_sec_placed_1_read?
+//Чтение нового числа
+go_back_sec_placed_0_read?,0, ,place_sec_0
+go_back_sec_placed_0_read?,1, ,place_sec_1
+go_back_sec_placed_0_read?, ,=,go_to_end_1
+go_back_sec_placed_1_read?,0, ,place_sec_0
+go_back_sec_placed_1_read?,1, ,place_sec_1
+go_back_sec_placed_1_read?, ,=,go_to_end_1
+// Чтение новой цифры и ее запись (сразу начиная со второго числа)
+place_sec_0, ,>,place_sec_0_sp1
+place_sec_0_sp1,1,>,place_sec_0_sp1
+place_sec_0_sp1,0,>,place_sec_0_sp1
+place_sec_0_sp1, ,>,place_sec_0_sp2
+place_sec_0_sp2,1,>,place_sec_0_sp2
+place_sec_0_sp2,0,>,place_sec_0_sp2
+place_sec_0_sp2, ,0,go_back_sec_0
+place_sec_1, ,>,place_sec_1_sp1
+place_sec_1_sp1,1,>,place_sec_1_sp1
+place_sec_1_sp1,0,>,place_sec_1_sp1
+place_sec_1_sp1, ,>,place_sec_1_sp2
+place_sec_1_sp2,1,>,place_sec_1_sp2
+place_sec_1_sp2,0,>,place_sec_1_sp2
+place_sec_1_sp2, ,1,go_back_sec_1
+// Второе число закончилось, а первое продолжается
+fst_placing_00_reading_*._sp1_1,0, ,sec_ended_fst_0
+fst_placing_01_reading_*._sp1_1,0, ,sec_ended_fst_0
+fst_placing_10_reading_*._sp1_1,0, ,sec_ended_fst_0
+fst_placing_11_reading_*._sp1_1,0, ,sec_ended_fst_0
+sec_ended_fst_0, ,>,getres_fst0
+fst_placing_00_reading_*._sp1_1,1, ,sec_ended_fst_1
+fst_placing_01_reading_*._sp1_1,1, ,sec_ended_fst_1
+fst_placing_10_reading_*._sp1_1,1, ,sec_ended_fst_1
+fst_placing_11_reading_*._sp1_1,1, ,sec_ended_fst_1
+sec_ended_fst_1, ,>,getres_fst1
+                 // Получение результата только для 1 числа
+                 getres_fst0, ,>,getres_fst0_sp1           // В этом блоке ставим 0
+                 getres_fst0,1,>,getres_fst0
+                 getres_fst0,0,>,getres_fst0
+                 getres_fst0_sp1, ,>,getres_fst0_place_0
+                 getres_fst0_sp1,1,>,getres_fst0_sp1
+                 getres_fst0_sp1,0,>,getres_fst0_sp1
+                 getres_fst0_place_0, ,0,go_back_fst0
+                 getres_fst0_place_0,1,>,getres_fst0_place_0
+                 getres_fst0_place_0,0,>,getres_fst0_place_0
+                 getres_fst1, ,>,getres_fst1_sp1          // В этом блоке ставим 1
+                 getres_fst1,1,>,getres_fst1
+                 getres_fst1,0,>,getres_fst1
+                 getres_fst1_sp1, ,>,getres_fst1_place_0
+                 getres_fst1_sp1,1,>,getres_fst1_sp1
+                 getres_fst1_sp1,0,>,getres_fst1_sp1
+                 getres_fst1_place_0, ,1,go_back_fst1
+                 getres_fst1_place_0,1,>,getres_fst1_place_0
+                 getres_fst1_place_0,0,>,getres_fst1_place_0
+// Возвращаемся, ставим нужное цифру и берем следующую
+go_back_fst1,1,<,go_back_fst1
+go_back_fst1,0,<,go_back_fst1
+go_back_fst1, ,<,go_back_fst1_sp1
+go_back_fst1_sp1,1,<,go_back_fst1_sp1
+go_back_fst1_sp1,0,<,go_back_fst1_sp1
+go_back_fst1_sp1, ,<,go_back_fst1_sp2
+go_back_fst1_sp2,1,<,go_back_fst1_sp2
+go_back_fst1_sp2,0,<,go_back_fst1_sp2
+go_back_fst1_sp2, ,1,go_back_fst?
+go_back_fst0,1,<,go_back_fst0
+go_back_fst0,0,<,go_back_fst0
+go_back_fst0, ,<,go_back_fst0_sp1
+go_back_fst0_sp1,1,<,go_back_fst0_sp1
+go_back_fst0_sp1,0,<,go_back_fst0_sp1
+go_back_fst0_sp1, ,<,go_back_fst0_sp2
+go_back_fst0_sp2,1,<,go_back_fst0_sp2
+go_back_fst0_sp2,0,<,go_back_fst0_sp2
+go_back_fst0_sp2, ,0,go_back_fst?
+// Смотрим, какое число после только что поставленного
+// CONST
+              go_back_fst?,1,<,go_back_fst?_1
+              go_back_fst?,0,<,go_back_fst?_1
+              go_back_fst?_1,1, ,getres_fst1_sp0
+              getres_fst1_sp0, ,>,getres_fst1
+              go_back_fst?_1,0, ,getres_fst0_sp0
+              getres_fst0_sp0, ,>,getres_fst0
+              go_back_fst?_1, ,=,go_to_end
+// Конец
+go_to_end, ,>,go_to_end_1
+go_to_end,0,>,go_to_end
+go_to_end,1,>,go_to_end
+go_to_end_1,0,>,go_to_end_1
+go_to_end_1,1,>,go_to_end_1
+go_to_end_1, ,>,go_to_end_2
+go_to_end_2,1,>,go_to_end_2
+go_to_end_2,0,>,go_to_end_2
+go_to_end_2, ,>,go_to_end_3
+go_to_end_3,1,>,go_to_end_3
+go_to_end_3,0,>,go_to_end_3
+go_to_end_3, ,=,start_reverse_answer
+// Проверка, является ли это 1 цифрой
+start_reverse_answer, ,<,check_ln1
+check_ln1,0,<,check_ln1_sp0
+check_ln1,1,<,check_ln1_sp0
+check_ln1_sp0, ,>,is_1
+is_1,0,>,is_1
+is_1,1,>,is_1
+check_ln1_sp0,0,>,not_1
+check_ln1_sp0,1,>,not_1
+not_1,0,>,not_1
+not_1,1,>,not_1
+is_1, ,#,is_1
+not_1, ,<,ln*_rn*
+// Условие проверки на предпоследний ход
+ln_0_rn_0, ,<,ln_0_rn_0_sp0
+ln_0_rn_0_sp0,0,<,ln_0_rn_0_sp0
+ln_0_rn_0_sp0,1,<,ln_0_rn_0_sp0
+// Два пробела рядом
+ln_0_rn_0_sp0, ,<,ln_0_rn_0_sp1
+ln_0_rn_0_sp1, ,0,ln_0_rn_0_sp1_placed0*
+ln_0_rn_0_sp1_placed0*,0,>,ln_0_rn_0_sp1_placed0*
+ln_0_rn_0_sp1_placed0*,1,>,ln_0_rn_0_sp1_placed0*
+ln_0_rn_0_sp1_placed0*, ,0,end_0
+// Пробел стоит через 1
+ln_0_rn_0_sp1,0,<,ln_0_rn_0_sp1_1
+ln_0_rn_0_sp1,1,<,ln_0_rn_0_sp1_1
+ln_0_rn_0_sp1_1, ,0,ln_0_rn_0_sp1_1_placed0*
+ln_0_rn_0_sp1_1_placed0*,0,>,ln_0_rn_0_sp1_1_placed0*
+ln_0_rn_0_sp1_1_placed0*,1,>,ln_0_rn_0_sp1_1_placed0*
+ln_0_rn_0_sp1_1_placed0*, ,0,end_0
+// Возвращение к крайней правой
+ln_0_rn_0_sp1_1,0,>,ln_0_rn_0_sp1_0
+ln_0_rn_0_sp1_1,1,>,ln_0_rn_0_sp1_0
+ln_0_rn_0_sp1_0,0,>,ln_0_rn_0_sp1_0
+ln_0_rn_0_sp1_0,1,>,ln_0_rn_0_sp1_0
+ln_0_rn_0_sp1_0, ,>,ln_0_rn_0_goright
+ln_0_rn_0_goright,0,>,ln_0_rn_0_goright
+ln_0_rn_0_goright,1,>,ln_0_rn_0_goright
+// Условие проверки на предпоследний ход
+ln_0_rn_1, ,<,ln_0_rn_1_sp0
+ln_0_rn_1_sp0,0,<,ln_0_rn_1_sp0
+ln_0_rn_1_sp0,1,<,ln_0_rn_1_sp0
+// Два пробела рядом
+ln_0_rn_1_sp0, ,<,ln_0_rn_1_sp1
+ln_0_rn_1_sp1, ,1,ln_0_rn_1_sp1_placed0*
+ln_0_rn_1_sp1_placed0*,0,>,ln_0_rn_1_sp1_placed0*
+ln_0_rn_1_sp1_placed0*,1,>,ln_0_rn_1_sp1_placed0*
+ln_0_rn_1_sp1_placed0*, ,0,end_0
+// Пробел стоит через 1
+ln_0_rn_1_sp1,0,<,ln_0_rn_1_sp1_1
+ln_0_rn_1_sp1,1,<,ln_0_rn_1_sp1_1
+ln_0_rn_1_sp1_1, ,1,ln_0_rn_1_sp1_1_placed0*
+ln_0_rn_1_sp1_1_placed0*,0,>,ln_0_rn_1_sp1_1_placed0*
+ln_0_rn_1_sp1_1_placed0*,1,>,ln_0_rn_1_sp1_1_placed0*
+ln_0_rn_1_sp1_1_placed0*, ,0,end_0
+// Возвращение к крайней правой
+ln_0_rn_1_sp1_1,0,>,ln_0_rn_1_sp1_0
+ln_0_rn_1_sp1_1,1,>,ln_0_rn_1_sp1_0
+ln_0_rn_1_sp1_0,0,>,ln_0_rn_1_sp1_0
+ln_0_rn_1_sp1_0,1,>,ln_0_rn_1_sp1_0
+ln_0_rn_1_sp1_0, ,>,ln_0_rn_1_goright
+ln_0_rn_1_goright,0,>,ln_0_rn_1_goright
+ln_0_rn_1_goright,1,>,ln_0_rn_1_goright
+// Условие проверки на предпоследний ход
+ln_1_rn_0, ,<,ln_1_rn_0_sp0
+ln_1_rn_0_sp0,0,<,ln_1_rn_0_sp0
+ln_1_rn_0_sp0,1,<,ln_1_rn_0_sp0
+// Два пробела рядом
+ln_1_rn_0_sp0, ,<,ln_1_rn_0_sp1
+ln_1_rn_0_sp1, ,0,ln_1_rn_0_sp1_placed0*
+ln_1_rn_0_sp1_placed0*,0,>,ln_1_rn_0_sp1_placed0*
+ln_1_rn_0_sp1_placed0*,1,>,ln_1_rn_0_sp1_placed0*
+ln_1_rn_0_sp1_placed0*, ,1,end_0
+// Пробел стоит через 1
+ln_1_rn_0_sp1,0,<,ln_1_rn_0_sp1_1
+ln_1_rn_0_sp1,1,<,ln_1_rn_0_sp1_1
+ln_1_rn_0_sp1_1, ,0,ln_1_rn_0_sp1_1_placed0*
+ln_1_rn_0_sp1_1_placed0*,0,>,ln_1_rn_0_sp1_1_placed0*
+ln_1_rn_0_sp1_1_placed0*,1,>,ln_1_rn_0_sp1_1_placed0*
+ln_1_rn_0_sp1_1_placed0*, ,1,end_0
+// Возвращение к крайней правой
+ln_1_rn_0_sp1_1,0,>,ln_1_rn_0_sp1_0
+ln_1_rn_0_sp1_1,1,>,ln_1_rn_0_sp1_0
+ln_1_rn_0_sp1_0,0,>,ln_1_rn_0_sp1_0
+ln_1_rn_0_sp1_0,1,>,ln_1_rn_0_sp1_0
+ln_1_rn_0_sp1_0, ,>,ln_1_rn_0_goright
+ln_1_rn_0_goright,0,>,ln_1_rn_0_goright
+ln_1_rn_0_goright,1,>,ln_1_rn_0_goright
+// Условие проверки на предпоследний ход
+ln_1_rn_1, ,<,ln_1_rn_1_sp0
+ln_1_rn_1_sp0,0,<,ln_1_rn_1_sp0
+ln_1_rn_1_sp0,1,<,ln_1_rn_1_sp0
+// Два пробела рядом
+ln_1_rn_1_sp0, ,<,ln_1_rn_1_sp1
+ln_1_rn_1_sp1, ,1,ln_1_rn_1_sp1_placed0*
+ln_1_rn_1_sp1_placed0*,0,>,ln_1_rn_1_sp1_placed0*
+ln_1_rn_1_sp1_placed0*,1,>,ln_1_rn_1_sp1_placed0*
+ln_1_rn_1_sp1_placed0*, ,1,end_0
+// Пробел стоит через 1
+ln_1_rn_1_sp1,0,<,ln_1_rn_1_sp1_1
+ln_1_rn_1_sp1,1,<,ln_1_rn_1_sp1_1
+ln_1_rn_1_sp1_1, ,1,ln_1_rn_1_sp1_1_placed0*
+ln_1_rn_1_sp1_1_placed0*,0,>,ln_1_rn_1_sp1_1_placed0*
+ln_1_rn_1_sp1_1_placed0*,1,>,ln_1_rn_1_sp1_1_placed0*
+ln_1_rn_1_sp1_1_placed0*, ,1,end_0
+// Возвращение к крайней правой
+ln_1_rn_1_sp1_1,0,>,ln_1_rn_1_sp1_0
+ln_1_rn_1_sp1_1,1,>,ln_1_rn_1_sp1_0
+ln_1_rn_1_sp1_0,0,>,ln_1_rn_1_sp1_0
+ln_1_rn_1_sp1_0,1,>,ln_1_rn_1_sp1_0
+ln_1_rn_1_sp1_0, ,>,ln_1_rn_1_goright
+ln_1_rn_1_goright,0,>,ln_1_rn_1_goright
+ln_1_rn_1_goright,1,>,ln_1_rn_1_goright
+// Первое прочтение
+ln*_rn*,0, ,ln*_rn0
+ln*_rn0, ,<,ln*_rn0_sp1
+ln*_rn0_sp1,1,<,ln*_rn0_sp1
+ln*_rn0_sp1,0,<,ln*_rn0_sp1
+ln*_rn0_sp1, ,>,ln*_rn0_sp1_1
+ln*_rn0_sp1_1,0, ,ln0_rn0_sp1
+ln*_rn0_sp1_1,1, ,ln1_rn0_sp1
+ln0_rn0_sp1, ,>,ln0_rn0_sp2
+ln1_rn0_sp1, ,>,ln1_rn0_sp2
+// Возвращение к началу
+ln0_rn0_sp2,0,>,ln0_rn0_sp2
+ln0_rn0_sp2,1,>,ln0_rn0_sp2
+ln0_rn0_sp2, ,>,ln0_rn0_sp3
+ln0_rn0_sp3,0,>,ln0_rn0_sp3
+ln0_rn0_sp3,1,>,ln0_rn0_sp3
+ln0_rn0_sp3, ,=,ln_0_rn_0
+ln1_rn0_sp2,0,>,ln1_rn0_sp2
+ln1_rn0_sp2,1,>,ln1_rn0_sp2
+ln1_rn0_sp2, ,>,ln1_rn0_sp3
+ln1_rn0_sp3,0,>,ln1_rn0_sp3
+ln1_rn0_sp3,1,>,ln1_rn0_sp3
+ln1_rn0_sp3, ,=,ln_1_rn_0
+ln0_rn1_sp2,0,>,ln0_rn1_sp2
+ln0_rn1_sp2,1,>,ln0_rn1_sp2
+ln0_rn1_sp2, ,>,ln0_rn1_sp3
+ln0_rn1_sp3,0,>,ln0_rn1_sp3
+ln0_rn1_sp3,1,>,ln0_rn1_sp3
+ln0_rn1_sp3, ,=,ln_0_rn_1
+ln1_rn1_sp2,0,>,ln1_rn1_sp2
+ln1_rn1_sp2,1,>,ln1_rn1_sp2
+ln1_rn1_sp2, ,>,ln1_rn1_sp3
+ln1_rn1_sp3,0,>,ln1_rn1_sp3
+ln1_rn1_sp3,1,>,ln1_rn1_sp3
+ln1_rn1_sp3, ,=,ln_1_rn_1
+ln*_rn*,1, ,ln*_rn1
+ln*_rn1, ,<,ln*_rn1_sp1
+ln*_rn1_sp1,1,<,ln*_rn1_sp1
+ln*_rn1_sp1,0,<,ln*_rn1_sp1
+ln*_rn1_sp1, ,>,ln*_rn1_sp1_1
+ln*_rn1_sp1_1,0, ,ln0_rn1_sp1
+ln*_rn1_sp1_1,1, ,ln1_rn1_sp1
+ln0_rn1_sp1, ,>,ln0_rn1_sp2
+ln1_rn1_sp1, ,>,ln1_rn1_sp2
+// После первого прочтения число нельзя перевернуть:
+// Для 00
+ln_0_rn_0_goright, ,<,readed_00_reading_**
+readed_00_reading_**,1,<,readed_00_reading_**
+readed_00_reading_**,0,<,readed_00_reading_**
+readed_00_reading_**, ,0,readed_+0_reading_**
+readed_+0_reading_**,0,<,readed_+0_reading_**_1
+readed_+0_reading_**,1,<,readed_+0_reading_**_1
+// Справа 0
+readed_+0_reading_**_1,0, ,readed_+0_reading_*0
+readed_+0_reading_*0, ,<,readed_+0_reading_*0_sp1
+readed_+0_reading_*0_sp1,1,<,readed_+0_reading_*0_sp1
+readed_+0_reading_*0_sp1,0,<,readed_+0_reading_*0_sp1
+readed_+0_reading_*0_sp1, ,0,readed_++_reading_*0_sp1
+readed_++_reading_*0_sp1,0,>,readed_++_reading_*0_sp1_1
+readed_++_reading_*0_sp1,1,>,readed_++_reading_*0_sp1_1
+readed_++_reading_*0_sp1_1,0, ,ln0_rn0_sp1
+readed_++_reading_*0_sp1_1,1, ,ln1_rn0_sp1
+// Справа 1
+readed_+0_reading_**_1,1, ,readed_+0_reading_*1
+readed_+0_reading_*1, ,<,readed_+0_reading_*1_sp1
+readed_+0_reading_*1_sp1,1,<,readed_+0_reading_*1_sp1
+readed_+0_reading_*1_sp1,0,<,readed_+0_reading_*1_sp1
+readed_+0_reading_*1_sp1, ,0,readed_++_reading_*1_sp1
+readed_++_reading_*1_sp1,0,>,readed_++_reading_*1_sp1_1
+readed_++_reading_*1_sp1,1,>,readed_++_reading_*1_sp1_1
+readed_++_reading_*1_sp1_1,0, ,ln0_rn1_sp1
+readed_++_reading_*1_sp1_1,1, ,ln1_rn1_sp1
+// Для 01
+ln_0_rn_1_goright, ,<,readed_01_reading_**
+readed_01_reading_**,1,<,readed_01_reading_**
+readed_01_reading_**,0,<,readed_01_reading_**
+readed_01_reading_**, ,0,readed_+1_reading_**
+readed_+1_reading_**,0,<,readed_+1_reading_**_1
+readed_+1_reading_**,1,<,readed_+1_reading_**_1
+// Справа 0
+readed_+1_reading_**_1,0, ,readed_+1_reading_*0
+readed_+1_reading_*0, ,<,readed_+1_reading_*0_sp1
+readed_+1_reading_*0_sp1,1,<,readed_+1_reading_*0_sp1
+readed_+1_reading_*0_sp1,0,<,readed_+1_reading_*0_sp1
+readed_+1_reading_*0_sp1, ,1,readed_++_reading_*0_sp1
+// Справа 1
+readed_+1_reading_**_1,1, ,readed_+1_reading_*1
+readed_+1_reading_*1, ,<,readed_+1_reading_*1_sp1
+readed_+1_reading_*1_sp1,1,<,readed_+1_reading_*1_sp1
+readed_+1_reading_*1_sp1,0,<,readed_+1_reading_*1_sp1
+readed_+1_reading_*1_sp1, ,1,readed_++_reading_*1_sp1
+// Для 10
+ln_1_rn_0_goright, ,<,readed_10_reading_**
+readed_10_reading_**,1,<,readed_10_reading_**
+readed_10_reading_**,0,<,readed_10_reading_**
+readed_10_reading_**, ,1,readed_+0_reading_**
+// Для 11
+ln_1_rn_1_goright, ,<,readed_11_reading_**
+readed_11_reading_**,1,<,readed_11_reading_**
+readed_11_reading_**,0,<,readed_11_reading_**
+readed_11_reading_**, ,1,readed_+1_reading_**
+// КОНЕЦ
+end_0,0,>,end_0
+end_0,1,>,end_0
+end_0, ,#,end_0
+end, ,#,end

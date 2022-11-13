@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int sign(int a) {
+    if (a < 0) {
+        return -1;
+    }
+    if (a == 0) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+int abs(int a) {
+	if (a >= 0) {
+		return a;
+	}
+	return -a;
+}
+
+int min(int a, int b) {
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+
+int main() {
+	int i = 0, j = -3, l = -7;
+	int i0 = i, j0 = j, l0 = l;
+	for (int k = 0; k <= 50; k++) {
+		i0 = i;
+		j0 = j;
+		l0 = l;
+		printf("k = %d i = %d, j = %d, l=%d\n", k, i0, j0,l0);
+		int ring = (i0 - 10) * (i0 - 10) + (j0 - 10) * (j0 - 10);
+		if ( ring >= 25 && ring <= 100 ) {
+			printf("Попал на шаге %d i=%d, j=%d, l=%d\n", k, i0, j0,l0);
+            		return 0;
+		}
+		
+		i = abs(i0 - j0 + l0) / (3 - sign(i0 - j0 + k)) + 10;
+		j = abs(i0 + j0 - l0) / (3 - sign(i0 - j0 + k)) + 10;
+		l = max(i0 * j0, j0 * l0) * (k + 1) % 40;
+		
+	}
