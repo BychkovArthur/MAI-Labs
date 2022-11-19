@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+
+int main() { 
+
+	int a = 0, b = 0, c = 0, x1 = 0, x2 = 0, D = 0;
+	
+	printf("Введите коэфициэнты a, b, c квадратного уравнения ax^2 + bx + c = 0\n");
+	scanf("%d%d%d", &a, &b, &c);
+	
+	D = b * b - 4 * a * c;
+	
+	if (D < 0) {
+	printf("Уравнение не имеет решений\n");
+	} else {
+	
+	if (D == 0) {
+	
+	x1 = (-b / (a * 2));
+	printf("Корень уравнения x = %d\n", x1);	
+	
+	} else {
+	x1 = (-b - sqrt(D)) / 2;
+	x2 = (-b + sqrt(D)) / 2;
+	x1 = x1 / a;
+	x2 = x2 / a;
+	printf("Корни уравнения x1 = %d, x2 = %d\n", x1, x2);
+	
+	}
+	}
+}
