@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	char file_name[1000];
+	int c = 0, in_word = 0; // с - означает, в комментарии мы находимся или нет
+	char s, l, pl, ppl, pppl; // Здесь s (symbol) - текущий символ, l (last) - предыдущий символ, pl (pre_last) - предпредыдущий символ и последний 2 аналогично.
+	long long count = 0;
+	
+	printf("Enter a file name up to 1000 characters: ");
+	scanf("%s", file_name);
+	
+	FILE *file = fopen(file_name, "r"); // Открытие файла на чтение данных
+	
+	while (( s = getc(file)) != EOF) {
+		if (pppl == '/' && ppl == '*' && pl == '/' && l == '*' && s == '/') { // Пограничный случай /*/*/
+			c = 0;
+			in_word = 0;
+			pppl = ppl;
+			ppl = pl;
+			pl = l;
+			l = s;
+			continue;
+		}
+		if (ppl == '/' && pl == '*' && l == '*' && s == '/') { // Пограничный случай /**/
+			c = 0;
+			in_word = 0;
+			continue;
+		}
+		
+		if (s == '/' && l == '*' && c == 1) { // Выходим из комментария
+			
+			if (!(isspace(pl))) {
+				count ++;
+			}
+			c = 0;
+			in_word = 0;
+			pppl = ppl;
+			ppl = pl;
+			pl = l;
+			l = s;
+			continue;
+
+		}
+		
+		if (c) { // Мы внутри комментария
+			
+			if (in_word == 0 && !(isspace(s))) { // Заходим в слово
+				in_word = 1;
+			}
+			
+			if (in_word == 1 && isspace(s)) { // Слово закончислось
+				in_word = 0;
+				count++;
+			}
+			
+			pppl = ppl;
+			ppl = pl;
+			pl = l;
+			l = s;
+			continue;
+			
+		}
+		
+		
+		if (l == '/' && s == '*') { // Заходим в комментарий
+			c = 1;
+			pppl = ppl;
+			ppl = pl;
+			pl = l;
+			l = s;
+			continue;
+		}
+		
+		pppl = ppl;
+		ppl = pl;
+		pl = l;
+		l = s;	
+	}
+	
+	FILE *ans = fopen("answer.txt", "w"); // Открываем файл на записть ответа
+	
+	fprintf(ans, "The total number of words located in a multi-line comment in the file %s is equal to %lld\n", file_name, count); // Ввод ответа в файл
+	
+	printf("The total number of words located in a multi-line comment in the file %s is equal to %lld\n", file_name, count); // Вывод ответа в консоль
+	
+	fclose(file); // Closing files
+	fclose(ans);
+	return 0;
+	
+}
