@@ -1,0 +1,116 @@
+#include <stdio.h>
+
+/* Лабораторная работа №12. Вариант 2
+ * Выбрать тройки идущих подряд цифр числа, сумма которых максимальна.
+ * Студент группы М8О-101Б-22 Бычков А.*/
+
+int max(int a, int b) {
+
+	if (a >= b ) {
+		return a;
+	}
+	
+	return b;
+}
+
+int main() {
+	
+	char c;
+	int pre_last_num = -1, last_num = -1, curr_num = -1, mx = -1;
+	
+	// Открытие файлов
+	FILE *file = fopen("lab12_data.txt", "r"); 
+	FILE *ans = fopen("lab12_answer.txt", "w");
+
+	
+	while ( 1 ) {
+		
+		// Проверка на пустой файл
+		if ( ( c = getc(file) ) == EOF ) {
+			fprintf(ans, "В файле отсутствуют тройки подряд идущих цифр");
+			fclose(file);
+			fclose(ans);
+			return 0;
+		}
+		
+		// Файл закончился
+		if ( c == '\n' ) {
+			break;
+		}
+		
+		// Проверка на то, имеет ли число знак
+		if ( c == '+' || c == '-' ) {
+		
+			c = getc(file);
+			
+			// Если число - это просто знак + или -, то завершаем программу
+			if ( c == '\n' ) {
+				fprintf(ans, "В файле отсутствуют тройки подряд идущих цифр");
+				fclose(file);
+				fclose(ans);
+				return 0;
+			}
+		}
+		
+		curr_num = c - '0';
+		
+		// Ищем максимум
+		if (pre_last_num >= 0 && last_num >= 0 && curr_num >= 0 ) {
+		
+			if ( pre_last_num + last_num + curr_num >= mx ) {
+				mx = pre_last_num + last_num + curr_num;
+			}
+		}
+		
+		// Обновляем 2 числа, идущих перед текущим
+		pre_last_num = last_num;
+		last_num = curr_num;
+		
+	}
+	
+	
+	// Если была тройка чисел, то мы проходимся по файлу снова, в поисках тройки с максимальной суммой
+	if (mx >= 0) {
+		
+		// Вывод части ответа, с информацией о максимальной сумме
+		fprintf(ans, "Максимальная сумма трех подряд идущих цифр равна: %d\n", mx);
+		fprintf(ans, "Тройки подряд идущих цифр с суммой %d:", mx);
+		fclose(file);
+		
+		// Вновь открываем файл с исходными данными, для чтения
+		FILE *file = fopen("lab12_data.txt", "r");
+		pre_last_num = -1, last_num = -1, curr_num = -1;
+		
+		while ( 1 ) {
+			
+			c = getc(file);
+			
+			if ( c == '\n' ) {
+				break;
+			}
+			
+			if ( c == '+' || c == '-' ) {
+				c = getc(file);
+			}
+		
+			curr_num = c - '0';
+			
+			// Ищем тройки с суммой равной максимальной, если находим ее, то выводим в ответ
+			if ( pre_last_num + last_num + curr_num == mx ) {
+				fprintf(ans, "%d ", pre_last_num * 100 + last_num * 10 + curr_num);
+			}
+		
+			// Обновляем 2 числа, идущих перед текущим
+			pre_last_num = last_num;
+			last_num = curr_num;
+		}
+	// Если цифр меньше трех, то выводим сообщение об этом
+	} else {
+		fprintf(ans, "В файле отсутствуют тройки подряд идущих цифр");
+	}
+
+	// Закрытие файлов
+	fclose(ans); 
+	fclose(file);
+
+}
